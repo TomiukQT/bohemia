@@ -17,9 +17,9 @@ public class PlantController : MonoBehaviour
 
     private bool m_IsBurning = false;
     private int m_CurrentBurning = 0;
-    public int m_BurningDuration = 10;
+    public int m_BurningDuration = 5;
 
-    private float m_BurningRadius = 25f;
+    private float m_BurningRadius = 7f;
     private Vector3 m_BurningCenter;
 
     private Wind m_WindManager;
@@ -42,6 +42,11 @@ public class PlantController : MonoBehaviour
         UpdateState();
         WindCorrection();
         SpreadFire();
+    }
+
+    public void SetToFire()
+    {
+        StartBurning(m_MaxFire);
     }
 
     public void StartBurning(float amount = 1f)
@@ -86,7 +91,8 @@ public class PlantController : MonoBehaviour
         Collider[] colliders = Physics.OverlapSphere(m_BurningCenter, m_BurningRadius, LayerMask.GetMask("Plants"));
         for (int i = 0; i < colliders.Length; i++)
         {
-            colliders[i].gameObject.GetComponent<PlantController>().StartBurning();
+            //colliders[i].gameObject.GetComponent<PlantController>().StartBurning();
+            colliders[i].gameObject.GetComponent<PlantController>().SetToFire();
         }
     }
 
@@ -98,6 +104,16 @@ public class PlantController : MonoBehaviour
 
     private void OnMouseDown()
     {
-        StartBurning(m_MaxFire);
+        GameMode.Mode gm = GameObject.Find("GameManager").GetComponent<GameMode>().gameMode;
+
+        
+        SetToFire();
     }
+
+    private void OnDestroy()
+    {
+        TimeTickSystem.OnTick -= TimeTickSystem_OnTick;
+    }
+
+
 }

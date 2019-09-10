@@ -12,7 +12,7 @@ public class TimeTickSystem : MonoBehaviour
     }
 
     public static event EventHandler<OnTickEventArgs> OnTick;
-    private const float m_TICK_TIMER_MAX = 1f;
+    private const float m_TICK_TIMER_MAX = 4f;
     private int m_Tick;
     private float m_TickTimer;
 

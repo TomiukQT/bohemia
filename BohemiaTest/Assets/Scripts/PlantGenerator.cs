@@ -19,10 +19,10 @@ public class PlantGenerator : MonoBehaviour
 
     private void Start()
     {
-        Generate();
+        //Generate();
     }
 
-    void Generate()
+    public void Generate()
     {
         if (m_PlantsParent != null)
         {
@@ -41,6 +41,26 @@ public class PlantGenerator : MonoBehaviour
         }
 
     }
+
+    public void Clear()
+    {
+        if (m_PlantsParent != null)
+        {
+            Destroy(m_PlantsParent);
+        }
+    }
+
+    public void RandomFire()
+    {
+        int plantsToFire = m_PlantsParent.transform.childCount / 100;
+        for (int i = -1; i < plantsToFire; i++)
+        {
+            int rand = Random.Range(0, m_PlantsParent.transform.childCount);
+            m_PlantsParent.transform.GetChild(rand).gameObject.GetComponent<PlantController>().SetToFire();
+        }
+
+    }
+
 
 
 }
