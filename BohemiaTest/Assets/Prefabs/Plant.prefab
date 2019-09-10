@@ -106,6 +106,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d8e3631b21534143889289942eb5e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_StartedBurningMaterial: {fileID: 2100000, guid: a41d4cc49abd4744598cce964ec7f356,
+    type: 2}
   m_BurningMaterial: {fileID: 2100000, guid: e37ade59e7f0a7d4586ec173ee7de0a9, type: 2}
   m_BurntMaterial: {fileID: 2100000, guid: 9e2b363b691ddf44cb0c6204e7d75f79, type: 2}
   m_State: 0
